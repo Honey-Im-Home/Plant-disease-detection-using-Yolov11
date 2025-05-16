@@ -28,7 +28,7 @@ This project focuses on training and deploying a YOLOv11 model to detect plant d
   ```bash
   pip install ultralytics supervision roboflow opencv-python Pillow
 
-##Dataset Preparation
+## Dataset Preparation
 Ensure the dataset is structured with data.yaml specifying paths and class labels.
 
 Example data.yaml content:
@@ -48,12 +48,13 @@ Upload the dataset to Google Drive.
 
 Update paths in data.yaml to match your Drive directory.
 
-Run training commands:
+**Run training commands**:
 !yolo task=detect mode=train model=yolo11n.pt data=data.yaml epochs=50 imgsz=640
 
-####Validate and predict:
+**Validate and predict**:
 !yolo task=detect mode=val model=runs/detect/train4/weights/best.pt data=data.yaml
 !yolo task=detect mode=predict model=best.pt source=Test/images
+
 ### Inference (yolov11_detection.py)
 Update the model path and image path in the script.
 
@@ -70,11 +71,11 @@ Multiple Disease	      1
 Unknown/No Detection	  0
 
 ## Notes
-### Model Path Fix: In yolov11_detection.py, ensure YOLO(weights="path/to/model.pt") uses weights (not weight).
+**Model Path Fix**: In yolov11_detection.py, ensure YOLO(weights="path/to/model.pt") uses weights (not weight).
 
-### Class Order: The calculate_health_score function assumes class indices in data.yaml match the labels listed. Verify this to avoid misclassification.
+ **Class Order**: The calculate_health_score function assumes class indices in data.yaml match the labels listed. Verify this to avoid misclassification.
 
-#Results
+# Results
 Training metrics (mAP, confusion matrices) are saved in runs/detect/train*/.
 
 Prediction visualizations are stored in runs/detect/predict*/.
